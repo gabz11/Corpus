@@ -10,7 +10,7 @@ url1 = 'https://en.wikipedia.org/wiki/Natural_language_processing'
 url2 = 'https://www.sas.com/en_us/insights/analytics/what-is-natural-language-processing-nlp.html'
 url3 = 'https://www.techtarget.com/searchenterpriseai/definition/natural-language-processing-NLP'
 url4 = 'https://towardsdatascience.com/your-guide-to-natural-language-processing-nlp-48ea2511f6e1'
-url5 = 'https://replit.com/@gabz11/Trabalho-4-Corpus#main.py'
+url5 = 'https://www.datarobot.com/blog/what-is-natural-language-processing-introduction-to-nlp/'
 
 urls = [url1, url2, url3, url4, url5]
 
