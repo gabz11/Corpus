@@ -36,38 +36,29 @@ texto5 = []
 
 
 def filtraTexto(element):
-  if element.parent.name in [
-      'style', 'script', 'head', 'title', 'meta', '[document]'
-  ]:
-    return False
-  if isinstance(element, Comment):
-    return False
-  return True
+    for data in soup(['style', 'script', 'head', 'header', 'meta', '[document]', 'title', 'footer', 'iframe', 'nav']):
+        data.decompose()
+    return ' '.join(soup.stripped_strings)  # delimitar por espaço e retorna strings
 
 
-op = 0
-qUrl = len(urls)  # qtd links
+for url in urls:
+  indice = urls.index(url)                        
+  html = requests.get(url).text                     
+  soup = BeautifulSoup(html, 'html.parser')         
+  texts = filtraTexto(soup)                         
+  page = nlp(texts)
 
-while op < qUrl:
-  html = requests.get(urls[op]).text
-  soup = BeautifulSoup(html, 'html.parser')
-  texts = soup.findAll(text=True)
-  textFiltrado = filter(filtraTexto, texts)
-  text = " ".join(t.strip() for t in textFiltrado)
-  page = nlp(text)
   for sentence in page.sents:
-    if op == 0:
+    if indice == 0:
       texto1.append(sentence.text)
-    elif op == 1:
+    elif indice == 1:
       texto2.append(sentence.text)
-    elif op == 2:
+    elif indice == 2:
       texto3.append(sentence.text)
-    elif op == 3:
+    elif indice == 3:
       texto4.append(sentence.text)
-    elif op == 4:
+    elif indice == 4:
       texto5.append(sentence.text)
-
-  op += 1
 
 print(texto1)
 print(texto2)
